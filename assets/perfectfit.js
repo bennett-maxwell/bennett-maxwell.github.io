@@ -56,8 +56,24 @@
     else if (invMax && budget >= invMax) dims.capital = 100;
     else if (invMax && invMax > invMin) dims.capital = pyRound(100 * (budget - invMin) / (invMax - invMin));
     else dims.capital = 100;
-    if (liq != null && liqReq && liq < liqReq) dims.capital = Math.min(dims.capital, 40);
-    cov.capital = { scored: invMin != null };
+    var liqCapped = !!(liq != null && liqReq && liq < liqReq);
+    if (liqCapped) dims.capital = Math.min(dims.capital, 40);
+    /* D-2 (remediation 2026-10-26): net-worth requirement check. No
+       net-worth rule exists in the prototype matcher.py or in
+       matching-engine-design-v1.md section 2 (both state only the
+       liquid-capital cap above), so this implements the exact mirror of
+       that frozen liquid-capital cap rule: if the buyer supplied netWorth
+       AND the brand states netWorthRequired AND buyer netWorth <
+       netWorthRequired, the Capital sub-score is capped at 40. This adds
+       no new weight, band table, or default (frozen rubric G6); the cap
+       value (40) and the Capital dimension it applies to are the frozen
+       liquid rule's own. The effect is labelled via cov.capital
+       .netWorthCapped (surfaced in the coverage line, same style as the
+       liquid cap's cov.capital.liquidCapped). */
+    var nwReq = brand.netWorthRequired, nw = profile.netWorth;
+    var nwCapped = !!(nw != null && nwReq && nw < nwReq);
+    if (nwCapped) dims.capital = Math.min(dims.capital, 40);
+    cov.capital = { scored: invMin != null, liquidCapped: liqCapped, netWorthCapped: nwCapped };
 
     // 2. Ownership style (20)
     var styles = brand.ownershipStyles || [];
@@ -65,7 +81,12 @@
     if (styles.indexOf(want) !== -1) dims.style = 100;
     else if (styles.length === 1 && styles[0] === 'unspecified') dims.style = 50;
     else dims.style = 20;
-    cov.style = { scored: styles.length > 0 };
+    /* D-4 (remediation 2026-10-26, pre-push blocker): per the frozen
+       coverage definition, a sub-score produced by a neutral default does
+       NOT count as scored. ["unspecified"] yields exactly that default
+       (50), so Ownership counts as scored only when a style value other
+       than "unspecified" is present. The sub-score itself is unchanged. */
+    cov.style = { scored: styles.some(function (s) { return s !== 'unspecified'; }) };
 
     // 3. Risk alignment (15)
     var rtier = brand.riskTier;
@@ -304,6 +325,12 @@
     if (r.brand.liquidCapitalRequired == null) extra.push("this FDD doesn't state a liquid-capital requirement");
     if (r.brand.netWorthRequired == null) extra.push("this FDD doesn't state a net-worth requirement");
     if (extra.length) base += ' Capital note: ' + extra.join('; ') + '.';
+    /* D-2 labelling: capital-cap effects are named on the card, in the
+       same coverage-note style as the unstated-requirement notes above. */
+    var caps = [];
+    if (r.cov.capital && r.cov.capital.liquidCapped) caps.push("your liquid capital is below this FDD's stated liquid-capital requirement, so Capital is capped at 40");
+    if (r.cov.capital && r.cov.capital.netWorthCapped) caps.push("your net worth is below this FDD's stated net-worth requirement, so Capital is capped at 40");
+    if (caps.length) base += ' Capital cap: ' + caps.join('; ') + '.';
     return base;
   }
 
