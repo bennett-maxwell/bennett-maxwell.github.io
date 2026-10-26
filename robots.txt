@@ -1,2 +1,3 @@
 User-agent: *
 Allow: /
+Sitemap: https://bennett-maxwell.github.io/sitemap.xml
