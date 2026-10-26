@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PerfectFit Matching — Your 1–100 Franchise Match Score | FranchiseKI</title>
+<meta name="description" content="Type in your information and get a 1–100 PerfectFit grade for every franchise brand, scored on Capital (25), Ownership (20), Risk (15), Industry (15), Location territory terms (15) and Timeline (10) from FDD-stated data. Dimensions a brand's FDD does not state are labelled defaulted and never counted as scored.">
+<link rel="canonical" href="https://bennett-maxwell.github.io/perfectfit/">
+<link rel="stylesheet" href="/assets/style.css">
+<script src="/assets/perfectfit.js" defer></script>
+</head><body>
+<header class="site"><div class="wrap"><a class="logo" href="/">Franchise<span>KI</span></a>
+<nav class="main"><a href="/">Home</a><a href="/brands/">All Brands</a><a href="/territories/">Territories</a><a href="/compare/">Compare</a><a href="/quiz/">PerfectFit Quiz</a><a href="/perfectfit/">PerfectFit Matching</a><a href="/consultants/">Consultants</a><a href="/search/">Search</a></nav></div></header>
+<main class="wrap" id="pf-root">
+<h1>PerfectFit Matching</h1>
+<p>Type in your information and every brand in the catalog is graded <b>1–100</b> on how well it matches your criteria: <b>Capital 25 · Ownership 20 · Risk 15 · Industry 15 · Location 15 · Timeline 10</b>. Scores are computed on a 0–100 scale from FDD-stated data; brands that score 0 are not shown, so every score you see is between 1 and 100.</p>
+<p class="note"><b>How to read a score:</b> each card shows its six dimension sub-scores and a coverage line — “scored on N of 6”. A dimension a brand's FDD does not state is given a neutral default, is labelled <b>“defaulted — not stated in the FDD”</b>, and never counts toward that brand's coverage. FranchiseKI never estimates a missing value: the labeled 30%-of-investment liquid-capital estimate that exists for some brands is <b>not</b> used in any score. <b>Location</b> scores the <i>territory terms stated in the FDD (Item 12)</i> — it is not a geographic match, and nothing on this page claims that a territory is available anywhere; we only ever tell you when data shows a brand is <i>not</i> a fit. Your answers stay in your browser; nothing is sent anywhere.</p>
+
+<section class="blk">
+<h2>Try a sample profile</h2>
+<p class="small">The 12 sample profiles are <b>SYNTHETIC TEST PROFILES — not real people</b>. They exist so anyone can verify the matcher end-to-end.</p>
+<label for="pf-sample">Sample profile</label>
+<select id="pf-sample"><option value="">— choose a synthetic test profile —</option></select>
+</section>
+
+<section class="blk">
+<h2>Your profile</h2>
+<p class="small" id="pf-strength">Profile completeness: 0 of 16 answers.</p>
+<form id="pf-form" class="qform">
+<h3>Required — your ranking starts here (5)</h3>
+<label for="pf-budget">Maximum total investment ($) *</label>
+<input id="pf-budget" type="number" min="0" step="1000" placeholder="e.g. 250000">
+<label for="pf-liquid">Liquid capital available ($) *</label>
+<input id="pf-liquid" type="number" min="0" step="1000" placeholder="e.g. 100000">
+<label for="pf-style">Ownership style *</label>
+<select id="pf-style">
+<option value="">— choose —</option>
+<option value="owner-operator">Owner-operator (I run it day to day)</option>
+<option value="semi-absentee">Semi-absentee (I manage the manager)</option>
+<option value="absentee">Absentee (investment only)</option>
+</select>
+<label for="pf-risk">Risk tolerance (1 = very conservative, 5 = very aggressive) *</label>
+<input id="pf-risk" type="range" min="1" max="5" step="1" value="3">
+<span class="small">Current: <b id="pf-risk-out">3</b></span>
+<label for="pf-state">Target state *</label>
+<select id="pf-state">
+<option value="">— choose —</option>
+<option>AL</option><option>AK</option><option>AZ</option><option>AR</option><option>CA</option><option>CO</option><option>CT</option><option>DE</option><option>DC</option><option>FL</option><option>GA</option><option>HI</option><option>ID</option><option>IL</option><option>IN</option><option>IA</option><option>KS</option><option>KY</option><option>LA</option><option>ME</option><option>MD</option><option>MA</option><option>MI</option><option>MN</option><option>MS</option><option>MO</option><option>MT</option><option>NE</option><option>NV</option><option>NH</option><option>NJ</option><option>NM</option><option>NY</option><option>NC</option><option>ND</option><option>OH</option><option>OK</option><option>OR</option><option>PA</option><option>RI</option><option>SC</option><option>SD</option><option>TN</option><option>TX</option><option>UT</option><option>VT</option><option>VA</option><option>WA</option><option>WV</option><option>WI</option><option>WY</option>
+</select>
+<label for="pf-city">Target city (optional)</label>
+<input id="pf-city" type="text" placeholder="e.g. Austin">
+<p class="small">Honest note: in this phase your state and city are recorded with your profile, but the Location score itself is based on the territory terms a brand's FDD states (Item 12) — not on distance, and never on a claim that an area is available.</p>
+
+<h3>Optional ladder — every added answer visibly re-scores your list</h3>
+<label for="pf-networth">Net worth ($)</label>
+<input id="pf-networth" type="number" min="0" step="1000" placeholder="e.g. 500000">
+<label for="pf-timeline">Timeline to open (months)</label>
+<input id="pf-timeline" type="number" min="1" step="1" placeholder="e.g. 12">
+<fieldset><legend>Industry experience (check all that apply)</legend>
+<label><input type="checkbox" name="pf-exp" value="food"> Food</label>
+<label><input type="checkbox" name="pf-exp" value="retail"> Retail</label>
+<label><input type="checkbox" name="pf-exp" value="services"> Services</label>
+<label><input type="checkbox" name="pf-exp" value="health"> Health</label>
+<label><input type="checkbox" name="pf-exp" value="fitness"> Fitness</label>
+<label><input type="checkbox" name="pf-exp" value="education"> Education</label>
+<label><input type="checkbox" name="pf-exp" value="home-services"> Home services</label>
+<label><input type="checkbox" name="pf-exp" value="automotive"> Automotive</label>
+</fieldset>
+<fieldset><legend>Industries to avoid (these brands are hidden, and the count is shown)</legend>
+<label><input type="checkbox" name="pf-avoid" value="food"> Food</label>
+<label><input type="checkbox" name="pf-avoid" value="retail"> Retail</label>
+<label><input type="checkbox" name="pf-avoid" value="services"> Services</label>
+<label><input type="checkbox" name="pf-avoid" value="health"> Health</label>
+<label><input type="checkbox" name="pf-avoid" value="fitness"> Fitness</label>
+<label><input type="checkbox" name="pf-avoid" value="education"> Education</label>
+<label><input type="checkbox" name="pf-avoid" value="home-services"> Home services</label>
+<label><input type="checkbox" name="pf-avoid" value="automotive"> Automotive</label>
+</fieldset>
+<label for="pf-category">Preferred category</label>
+<select id="pf-category"><option value="">— no preference —</option></select>
+<label for="pf-prior">Have you owned a business before?</label>
+<select id="pf-prior"><option value="">— choose —</option><option value="yes">Yes</option><option value="no">No</option></select>
+<label for="pf-financing">Financing pre-approval</label>
+<select id="pf-financing"><option value="">— choose —</option><option value="pre-approved">Pre-approved</option><option value="in-progress">In progress</option><option value="not-started">Not started</option></select>
+<label for="pf-hours">Hands-on hours you can give per week</label>
+<select id="pf-hours"><option value="">— choose —</option><option value="40+">40+</option><option value="20-40">20–40</option><option value="10-20">10–20</option><option value="under-10">Under 10</option></select>
+<fieldset><legend>Lifestyle goals</legend>
+<label><input type="checkbox" name="pf-goals" value="be-own-boss"> Be my own boss</label>
+<label><input type="checkbox" name="pf-goals" value="build-wealth"> Build wealth</label>
+<label><input type="checkbox" name="pf-goals" value="flexible-hours"> Flexible hours</label>
+</fieldset>
+<label for="pf-radius">Radius around your target city (miles)</label>
+<input id="pf-radius" type="number" min="0" step="5" placeholder="e.g. 50">
+</form>
+<p class="note" id="pf-change"></p>
+</section>
+
+<section class="blk">
+<h2>Your ranked matches</h2>
+<div id="pf-results"><p class="note">Loading the catalog…</p></div>
+</section>
+
+<section class="blk">
+<h2>Where the data comes from</h2>
+<p class="small">Brand fields are extracted from each brand's Franchise Disclosure Document (FDD): investment range (Item 7), territory terms (Item 12), timeline and operations fields, plus the pilot scoring set (ownership styles, derived risk tier, industry tags) for 498 brands. This page merges the catalog's own match index (4,131 brands) with that pilot scoring overlay at load time, in your browser. A field an FDD does not state stays empty — it is labelled, never filled with an estimate.</p>
+</section>
+</main>
+<footer class="site"><div class="wrap"><p class="small">FranchiseKI — FDD-sourced franchise data. PerfectFit scores are informational, computed from FDD-stated data as labelled on each card; only a franchisor can confirm territory availability, and this page never claims an area is available.</p></div></footer>
+</body></html>
