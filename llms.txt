@@ -7,6 +7,9 @@
 - All brands A-Z: /brands/
 - Territory guide (Item 12 rules + exclusion method): /territories/
 - Compare brands side by side (fee, investment, royalty, Item 12 rule, availability): /compare/
+- PerfectFit Quiz: /quiz/ — answer a few quick questions (liquid capital, net worth, maximum investment, target state, ownership style, categories, risk comfort, timeline) and every brand is scored client-side over /match-index.json across six weighted dimensions (Capital 25, Ownership 20, Risk 15, Industry 15, Location 15, Timeline 10). A dimension that cannot be scored from a brand's FDD disclosures is excluded from its denominator and labeled; brands scored on fewer than 3 dimensions carry no Fit Score.
+- Consultants: /consultants/ — how the vetted consultant network works (vetted, not random; free to buyers because consultants are paid by franchisors; on the buyer's side of the table) and how to reach FranchiseKI customer service.
+- Brand pages carry a due diligence dossier where gate-passed FDD (fields100) data exists: Item 20 unit history, closures/transfers over the last 3 years, Item 3 litigation, Item 4 bankruptcy disclosure, Item 19 financial performance representations, ownership and training/support facts, company facts, and a questions-to-ask list generated only from fields the FDD does not disclose.
 - Full-text search: /search/
 - Sitemap: /sitemap.xml
 
