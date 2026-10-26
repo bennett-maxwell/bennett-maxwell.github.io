@@ -1,6 +1,6 @@
 # FranchiseKI — Franchise Brand & Territory Catalog
 
-> A research catalog of 5,338 franchise brands built from each brand's own Franchise Disclosure Document (FDD). For each brand: franchise fee (Item 5), royalty (Item 6), total investment range (Item 7), the Item 12 territory rule in the FDD's own words, and Item 20 outlet counts by state. Territory availability is exclusion-based: the catalog states what the FDD's rule says and where existing units are; it never claims a specific area is available — only the franchisor can confirm that.
+> A research catalog of 4,131 franchise brands built from each brand's own Franchise Disclosure Document (FDD). For each brand: franchise fee (Item 5), royalty (Item 6), total investment range (Item 7), the Item 12 territory rule in the FDD's own words, and Item 20 outlet counts by state. Territory availability is exclusion-based: the catalog states what the FDD's rule says and where existing units are; it never claims a specific area is available — only the franchisor can confirm that.
 
 ## Key pages
 - Home / full catalog: /
@@ -10,6 +10,6 @@
 - Sitemap: /sitemap.xml
 
 ## Data notes
-- 2,217 brands carry a verified Item 12 territory classification (exclusive / protected / non-exclusive / none) with the FDD citation.
-- 700 brands carry Item 20 state-by-state outlet data (graded PASS set).
+- 2,079 brands carry a verified Item 12 territory classification (exclusive / protected / non-exclusive / none) with the FDD citation.
+- 399 brands carry Item 20 state-by-state outlet data (graded PASS set).
 - Figures are as disclosed in each brand's FDD at extraction time; verify current terms with the franchisor.
