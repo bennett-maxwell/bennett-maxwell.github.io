@@ -6,6 +6,7 @@
 - Home / full catalog: /
 - All brands A-Z: /brands/
 - Territory guide (Item 12 rules + exclusion method): /territories/
+- Compare brands side by side (fee, investment, royalty, Item 12 rule, availability): /compare/
 - Full-text search: /search/
 - Sitemap: /sitemap.xml
 
