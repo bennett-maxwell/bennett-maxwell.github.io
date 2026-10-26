@@ -54,4 +54,3 @@ Allow: /
 User-agent: DuckAssistBot
 Allow: /
 
-Sitemap: https://bennett-maxwell.github.io/sitemap.xml

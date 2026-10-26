@@ -11,5 +11,5 @@
 
 ## Data notes
 - 2,079 brands carry a verified Item 12 territory classification (exclusive / protected / non-exclusive / none) with the FDD citation.
-- 399 brands carry Item 20 state-by-state outlet data (graded PASS set).
+- 400 brands carry Item 20 state-by-state outlet data (graded PASS set).
 - Figures are as disclosed in each brand's FDD at extraction time; verify current terms with the franchisor.
