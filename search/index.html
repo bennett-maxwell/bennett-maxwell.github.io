@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Search Franchise Brands | FranchiseKI</title>
+<meta name="description" content="Full-text search across all FranchiseKI brand pages.">
+
+<meta property="og:title" content="Search Franchise Brands | FranchiseKI"><meta property="og:description" content="Full-text search across all FranchiseKI brand pages.">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="/assets/style.css">
+</head><body>
+<header class="site"><div class="wrap"><a class="logo" href="/">Franchise<span>KI</span></a>
+<nav class="main"><a href="/">Home</a><a href="/brands/">All Brands</a><a href="/territories/">Territories</a><a href="/search/">Search</a></nav></div></header>
+<main class="wrap"><h1>Search the catalog</h1>
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+<script src="/pagefind/pagefind-ui.js"></script>
+<div id="searchui"></div>
+<div id="fallback" style="display:none"><input id="fq" type="search" style="width:100%;font-size:17px;padding:10px" placeholder="Search brand names and categories…"><div id="fres" class="grid" style="margin-top:14px"></div></div>
+<script>
+window.addEventListener('DOMContentLoaded', function(){
+  var q = new URLSearchParams(location.search).get('q') || '';
+  if (window.PagefindUI) {
+    new PagefindUI({ element: "#searchui", showSubResults: true, autofocus: true });
+    if (q) { var iv = setInterval(function(){ var inp = document.querySelector('.pagefind-ui__search-input'); if (inp) { inp.value = q; inp.dispatchEvent(new Event('input', {bubbles:true})); clearInterval(iv); } }, 200); setTimeout(function(){clearInterval(iv)}, 4000); }
+  } else {
+    document.getElementById('fallback').style.display = 'block';
+    var idx = null, fq = document.getElementById('fq'), res = document.getElementById('fres');
+    fetch('/search-index.json').then(function(r){ return r.json(); }).then(function(d){ idx = d; fq.value = q; run(); });
+    function run(){ if(!idx) return; var s = fq.value.trim().toLowerCase(); if (s.length < 2) { res.innerHTML=''; return; }
+      var hits = idx.filter(function(b){ return b.n.toLowerCase().indexOf(s) >= 0 || (b.c||'').toLowerCase().indexOf(s) >= 0; }).slice(0, 60);
+      res.innerHTML = hits.map(function(b){ return '<div class="card"><div class="cat">'+(b.c||'Franchise')+'</div><h3><a href="/brands/'+b.s+'/">'+b.n+'</a></h3></div>'; }).join('') || '<p>No matches.</p>'; }
+    fq.addEventListener('input', run);
+  }
+});
+</script></main>
+<footer class="site"><div class="wrap">
+<p><b>How to read this catalog.</b> Every figure comes from the brand's own Franchise Disclosure Document (FDD) — franchise fees and investment ranges from Items 5–7, royalty from Item 6, territory rules from Item 12, and outlet counts by state from Item 20. Territory availability is shown the way the FDD supports it: we state what a brand's territory rule says and where its existing units are. We never claim a specific area is available — only the franchisor can confirm that. Data assembled 2026-10-26; verify current terms with the franchisor before investing.</p>
+<p>FranchiseKI — franchise brand &amp; territory intelligence. This is an independent research catalog, not an offer to sell a franchise.</p>
+</div></footer></body></html>
