@@ -1,7 +1,6 @@
 /* FranchiseKI brand comparison: selection tray (all pages) + table (/compare/). */
 (function () {
   var KEY = 'fki-compare', MAX = 3, ND = 'Not disclosed in the FDD';
-  var AVAIL_LABEL = "Most likely available — no existing or announced outlets here, based on the brand's latest FDD (Item 20). Only the franchisor can confirm availability.";
   function escHtml(s) {
     return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
       return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
@@ -75,10 +74,10 @@
       if (!e.tt) return null;
       if (e.tt === 'exclusive' || e.tt === 'protected') {
         if (e.empty && e.empty.length) {
-          return '<span class="lbl">' + AVAIL_LABEL + '</span><br>States with no existing or announced outlets: ' + e.empty.join(', ');
+          return 'Areas inside an existing franchisee\u2019s territory are not available while that agreement runs. Only the franchisor can confirm availability.';
         }
         if (e.empty) {
-          return 'This brand discloses existing or announced outlets in every state, so no state carries the \u201Cmost likely available\u201D label. Areas inside an existing franchisee\u2019s territory are not available while that agreement runs.';
+          return 'This brand discloses existing or announced outlets in every state. Areas inside an existing franchisee\u2019s territory are not available while that agreement runs.';
         }
         return 'No state list can be computed for this brand yet \u2014 its FDD outlet table (Item 20) has not been extracted. Areas inside an existing franchisee\u2019s territory are not available while that agreement runs.';
       }

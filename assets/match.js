@@ -1,7 +1,6 @@
 /* FranchiseKI PerfectFit: profile + honest client-side scoring. */
 (function () {
   var KEY = 'fki-profile';
-  var AVAIL_LABEL = "Most likely available \u2014 no existing or announced outlets here, based on the brand's latest FDD (Item 20). Only the franchisor can confirm availability.";
   var WEIGHTS = { capital: 25, ownership: 20, risk: 15, industry: 15, location: 15, timeline: 10 };
   var DIM_LABEL = { capital: 'Capital', ownership: 'Ownership', risk: 'Risk', industry: 'Industry', location: 'Location', timeline: 'Timeline' };
 
@@ -134,7 +133,7 @@
      brand has Item 20 data. Outlets in the target state prove presence
      (0.70) \u2014 territory status is still governed by the brand's Item 12
      type. An exclusive/protected brand with NO outlets in the target state
-     scores highest (1.0) and its card carries AVAIL_LABEL verbatim.
+     scores highest (1.0) on location.
      Non-exclusive or no-territory brands with no outlets there: 0.50. ---- */
   function scoreLocation(p, b) {
     if (!p.targetState || !b.hasItem20) return null;
@@ -142,7 +141,7 @@
       return { score: 0.70, note: 'This brand already operates in ' + p.targetState + ' (Item 20) \u2014 presence is proven; whether a new unit can be placed near an existing one is governed by its Item 12 territory rule.' };
     }
     if (b.territoryType === 'exclusive' || b.territoryType === 'protected') {
-      return { score: 1.0, avail: true, note: AVAIL_LABEL };
+      return { score: 1.0, note: 'This brand discloses no outlets in ' + p.targetState + ' in its latest FDD (Item 20). Areas inside an existing franchisee\u2019s territory are not available while that agreement runs. Only the franchisor can confirm availability.' };
     }
     return { score: 0.50, note: 'This brand discloses no outlets in ' + p.targetState + ' in its latest FDD (Item 20), and its Item 12 rule grants no exclusivity, so there are no territory-based exclusions.' };
   }
